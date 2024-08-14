@@ -1,0 +1,7 @@
+{
+    "login": "login",
+    "register": "register",
+    "profile": "profile",
+    "verification": "verification",
+    "notifications": "notifications"
+}
