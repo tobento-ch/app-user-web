@@ -1553,7 +1553,7 @@ $schedule->task(
 );
 ```
 
-Visit [User - Commands](https://github.com/tobento-ch/app-user#commands) for more detail.
+Visit [User - Console](https://github.com/tobento-ch/app-user#console) for more detail.
 
 ## Events
 
@@ -1584,7 +1584,7 @@ use Tobento\App\User\Web\Event;
 
 ### Login With Smartphone
 
-By default, login with smarthone is enabled. Make sure you have configured the **sms** channel in the ```app/config/notifier.php``` file for sending sms to verify its ...
+By default, login with smarthone is enabled. Make sure you have configured the **sms** channel in the ```app/config/notifier.php``` file for sending sms to verify its account for instance.
 
 ### List Available Routes
 
@@ -1599,7 +1599,7 @@ You may use the provided [Events](#events) to subscribe/unsubscribe registered u
 ```php
 use Tobento\App\User\Web\Event;
 
-class UserNewletterSubscriber
+class UserNewsletterSubscriber
 {
     public function subscribe(Event\Registered $event): void
     {
@@ -1638,7 +1638,7 @@ In the ```config/event.php``` file add the the listener:
 'listeners' => [
     // Specify listeners without event:
     'auto' => [
-        UserNewletterSubscriber::class,
+        UserNewsletterSubscriber::class,
     ],
 ],
 ```
