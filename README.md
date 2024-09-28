@@ -51,6 +51,7 @@ The User Web provides authentication features such as:
             - [Protect Routes From Unverified User](#protect-routes-from-unverified-user)
             - [Customize Available Channels To Verify](#customize-available-channels-to-verify)
     - [Deleting Expired Tokens](#deleting-expired-tokens)
+    - [View](#view)
     - [Events](#events)
     - [Learn More](#learn-more)
         - [List Available Routes](#list-available-routes)
@@ -1554,6 +1555,23 @@ $schedule->task(
 ```
 
 Visit [User - Console](https://github.com/tobento-ch/app-user#console) for more detail.
+
+## View
+
+**Acl View Macro**
+
+In your view files, you may use the acl macro to check for permission for instance:
+
+```php
+use Tobento\Service\Acl\AclInterface;
+
+var_dump($view->acl() instanceof AclInterface);
+// bool(true)
+
+if ($view->acl()->can('comments.write')) {
+    <div>Only users with the permission "comments.write" can see this!</div>
+}
+```
 
 ## Events
 
