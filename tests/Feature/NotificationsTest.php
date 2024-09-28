@@ -35,10 +35,6 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
     public function createApp(): AppInterface
     {
         $app = $this->createTmpApp(rootDir: __DIR__.'/../..');
-        //$app->boot(\Tobento\App\Boot\ErrorHandling::class);
-        //$app->booting();
-        //$app->get(\Tobento\Service\Config\ConfigInterface::class)->set('app.debug', true);
-        
         $app->boot(\Tobento\App\User\Web\Boot\UserWeb::class);
         $app->boot(\Tobento\App\Seeding\Boot\Seeding::class);
         
@@ -69,6 +65,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
     public function testNotificationsScreenIsRenderedWithNotification()
     {
         $config = $this->fakeConfig();
+        $config->with('http.url', '');
         $config->with('notifier.formatters', [
             \Tobento\App\Notifier\Storage\GeneralNotificationFormatter::class,
         ]);
