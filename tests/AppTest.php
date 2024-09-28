@@ -16,7 +16,9 @@ namespace Tobento\App\User\Web\Test\Feature;
 use PHPUnit\Framework\TestCase;
 use Tobento\App\AppInterface;
 use Tobento\App\User\Web;
+use Tobento\Service\Acl\AclInterface;
 use Tobento\Service\Console\ConsoleInterface;
+use Tobento\Service\View\ViewInterface;
 
 class AppTest extends \Tobento\App\Testing\TestCase
 {
@@ -36,6 +38,14 @@ class AppTest extends \Tobento\App\Testing\TestCase
         $this->assertInstanceof(Web\TokenFactoryInterface::class, $app->get(Web\TokenFactoryInterface::class));
     }
 
+    public function testViewAclMacroIsAvailable()
+    {
+        $app = $this->bootingApp();
+        
+        $view = $app->get(ViewInterface::class);
+        $this->assertInstanceof(AclInterface::class, $view->acl());
+    }
+    
     public function testConsoleCommandsAreAvailable()
     {
         $app = $this->bootingApp();
