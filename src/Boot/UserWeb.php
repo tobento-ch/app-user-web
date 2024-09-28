@@ -17,7 +17,9 @@ use Tobento\App\Boot;
 use Tobento\App\Boot\Config;
 use Tobento\App\Migration\Boot\Migration;
 use Tobento\App\User\Web\VerificatorHashKey;
+use Tobento\Service\Acl\AclInterface;
 use Tobento\Service\Console\ConsoleInterface;
+use Tobento\Service\View\ViewInterface;
 
 /**
  * UserWeb
@@ -72,6 +74,7 @@ class UserWeb extends Boot
      * @param Config $config
      * @param Migration $migration
      * @return void
+     * @psalm-suppress UndefinedMethod For line 104, $this->app()
      */
     public function boot(
         Config $config,
@@ -94,6 +97,14 @@ class UserWeb extends Boot
         foreach($config['features'] ?? [] as $feature) {
             $this->app->call($feature);
         }
+        
+        // view macro:
+        $this->app->on(
+            ViewInterface::class,
+            function(ViewInterface $view) {
+                $view->addMacro('acl', fn (): AclInterface => $this->app()->get(AclInterface::class));
+            }
+        );
         
         // console commands:
         $this->app->on(ConsoleInterface::class, static function(ConsoleInterface $console): void {
