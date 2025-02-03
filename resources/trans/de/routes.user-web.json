@@ -1,7 +1,7 @@
 {
     "login": "anmelden",
-    "register": "registrieren",
+    "notifications": "benachrichtigungen",
     "profile": "profil",
-    "verification": "verifizierung",
-    "notifications": "benachrichtigungen"
+    "register": "registrieren",
+    "verification": "verifizierung"
 }

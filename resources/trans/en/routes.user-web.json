@@ -1,7 +1,7 @@
 {
     "login": "login",
-    "register": "register",
+    "notifications": "notifications",
     "profile": "profile",
-    "verification": "verification",
-    "notifications": "notifications"
+    "register": "register",
+    "verification": "verification"
 }
