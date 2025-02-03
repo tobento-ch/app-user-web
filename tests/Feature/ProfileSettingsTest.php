@@ -91,7 +91,7 @@ class ProfileSettingsTest extends \Tobento\App\Testing\TestCase
         );
 
         $app = $this->bootingApp();
-        $user = UserFactory::new()->createOne();
+        $user = UserFactory::new(replaces: ['settings' => ['foo' => 'Foo']])->withEmail('tom@example.com')->createOne();
         $auth->authenticatedAs($user);
         
         $http->response()->assertStatus(302)->assertRedirectToRoute(name: 'profile.settings.edit');
@@ -100,6 +100,16 @@ class ProfileSettingsTest extends \Tobento\App\Testing\TestCase
             $user = $event->user();
             return $user->setting('preferred_notification_channels', []) === ['mail'];
         });
+        
+        $user = $auth->getUserRepository()->findByIdentity(email: 'tom@example.com');
+        
+        $this->assertSame(
+            [
+                'foo' => 'Foo',
+                'preferred_notification_channels' => ['mail']
+            ],
+            $user?->getSettings()
+        );
     }
     
     public function testProfileSettingsCanNotBeUpdatedIfInvalidLocale()
@@ -181,7 +191,7 @@ class ProfileSettingsTest extends \Tobento\App\Testing\TestCase
             ->assertBodyNotContains('Preferred Channels');
     }
     
-    public function testProfileSettingsScreenIsRenderedIsRenderedInLocaleDe()
+    public function testProfileSettingsScreenIsRenderedInLocaleDe()
     {
         $this->fakeConfig()->with('user_web.features', [
             Feature\Login::class,
