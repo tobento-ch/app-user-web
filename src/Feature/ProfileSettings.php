@@ -157,6 +157,12 @@ class ProfileSettings
             // You may specify an error message flashed to the user.
             errorMessage: 'The profile settings could not be updated.',
         );
+        
+        // merge settings:
+        $validation->valid()->set(
+            key: 'settings',
+            value: array_merge($user->getSettings(), $validation->valid()->get('settings', []))
+        );
 
         // update user:
         $updatedUser = $userRepository->updateWithAddress(
