@@ -194,7 +194,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
     public function testNotificationsScreenIsRenderedIsRenderedInLocaleDe()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Login::class,
+            new Feature\Login(),
             new Feature\Notifications(
                 localizeRoute: true,
             ),
@@ -433,7 +433,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
         
         $repo = $app->get(ChannelsInterface::class)->get(name: 'storage')->repository();
         $this->assertSame('2025-05-12 00:00:00', $repo->findById(1)->get('read_at'));
-        $this->assertSame('', $repo->findById(2)->get('read_at'));
+        $this->assertSame(null, $repo->findById(2)->get('read_at'));
     }
     
     public function testNotificationsCanNotBeDismissedIfNotAuthenticated()

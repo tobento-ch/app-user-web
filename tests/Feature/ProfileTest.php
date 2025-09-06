@@ -58,7 +58,7 @@ class ProfileTest extends \Tobento\App\Testing\TestCase
     public function testProfileScreenIsRenderedWithoutChannelVerifications()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Login::class,
+            new Feature\Login(),
             new Feature\Profile(
                 channelVerifications: false,
             ),
@@ -106,8 +106,8 @@ class ProfileTest extends \Tobento\App\Testing\TestCase
     public function testProfileScreenIsRenderedIsRenderedInLocaleDe()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Login::class,
-            Feature\Verification::class,
+            new Feature\Login(),
+            new Feature\Verification(),
             new Feature\Profile(
                 localizeRoute: true,
             ),

@@ -194,8 +194,8 @@ class ProfileSettingsTest extends \Tobento\App\Testing\TestCase
     public function testProfileSettingsScreenIsRenderedInLocaleDe()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Login::class,
-            Feature\Verification::class,
+            new Feature\Login(),
+            new Feature\Verification(),
             new Feature\ProfileSettings(
                 localizeRoute: true,
             ),

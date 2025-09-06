@@ -218,7 +218,7 @@ class LoginTest extends \Tobento\App\Testing\TestCase
     {
         $this->fakeConfig()->with('user_web.features', [
             new Feature\Home(),
-            Feature\ForgotPassword::class,
+            new Feature\ForgotPassword(),
             new Feature\Login(
                 rateLimiter: new FixedWindow(limit: 1),
             ),

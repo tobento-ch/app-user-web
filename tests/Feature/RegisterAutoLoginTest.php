@@ -40,8 +40,8 @@ class RegisterAutoLoginTest extends \Tobento\App\Testing\TestCase
     public function testUserAccountVerificationAfterRegistration()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Login::class,
-            Feature\Verification::class,
+            new Feature\Login(),
+            new Feature\Verification(),
             new Feature\Register(
                 successRedirectRoute: 'verification.account'
             ),
@@ -80,9 +80,9 @@ class RegisterAutoLoginTest extends \Tobento\App\Testing\TestCase
     public function testAutoLoginAfterRegistration()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Login::class,
-            Feature\Verification::class,
-            Feature\Profile::class,
+            new Feature\Login(),
+            new Feature\Verification(),
+            new Feature\Profile(),
             new Feature\Register(
                 successRedirectRoute: 'profile.edit'
             ),
@@ -121,10 +121,10 @@ class RegisterAutoLoginTest extends \Tobento\App\Testing\TestCase
     public function testAutoLoginAfterRegistrationWithExpiresAfterSeconds()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Home::class,
-            Feature\Login::class,
-            Feature\Verification::class,
-            Feature\Profile::class,
+            new Feature\Home(),
+            new Feature\Login(),
+            new Feature\Verification(),
+            new Feature\Profile(),
             new Feature\Register(
                 successRedirectRoute: 'profile.edit'
             ),
@@ -180,10 +180,10 @@ class RegisterAutoLoginTest extends \Tobento\App\Testing\TestCase
     public function testAutoLoginAfterRegistrationWithExpiresAfterDateInterval()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Home::class,
-            Feature\Login::class,
-            Feature\Verification::class,
-            Feature\Profile::class,
+            new Feature\Home(),
+            new Feature\Login(),
+            new Feature\Verification(),
+            new Feature\Profile(),
             new Feature\Register(
                 successRedirectRoute: 'profile.edit'
             ),
@@ -239,10 +239,10 @@ class RegisterAutoLoginTest extends \Tobento\App\Testing\TestCase
     public function testAutoLoginAfterRegistrationWithUserRoles()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Home::class,
-            Feature\Login::class,
-            Feature\Verification::class,
-            Feature\Profile::class,
+            new Feature\Home(),
+            new Feature\Login(),
+            new Feature\Verification(),
+            new Feature\Profile(),
             new Feature\Register(
                 successRedirectRoute: 'profile.edit'
             ),
@@ -283,10 +283,10 @@ class RegisterAutoLoginTest extends \Tobento\App\Testing\TestCase
     public function testAutoLoginAfterRegistrationWithUserRolesShouldNotLoginIfNotSpecified()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Home::class,
-            Feature\Login::class,
-            Feature\Verification::class,
-            Feature\Profile::class,
+            new Feature\Home(),
+            new Feature\Login(),
+            new Feature\Verification(),
+            new Feature\Profile(),
             new Feature\Register(
                 successRedirectRoute: 'home'
             ),

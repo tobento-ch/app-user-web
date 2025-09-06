@@ -245,7 +245,7 @@ class RegisterTest extends \Tobento\App\Testing\TestCase
     public function testRegisterScreenIsRenderedWithNewsletterOption()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Login::class,
+            new Feature\Login(),
             new Feature\Register(
                 newsletter: true,
             ),
@@ -287,7 +287,7 @@ class RegisterTest extends \Tobento\App\Testing\TestCase
     public function testRegisterScreenIsRenderedWithTerms()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Login::class,
+            new Feature\Login(),
             new Feature\Register(
                 termsRoute: 'terms',
             ),
@@ -310,7 +310,7 @@ class RegisterTest extends \Tobento\App\Testing\TestCase
     public function testRegisterScreenIsRenderedWithTermsClosure()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Login::class,
+            new Feature\Login(),
             new Feature\Register(
                 termsRoute: static function (RouterInterface $router): string {
                     return 'https://example.com/terms';
@@ -330,7 +330,7 @@ class RegisterTest extends \Tobento\App\Testing\TestCase
     public function testUserCanRegisterWithTerms()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Login::class,
+            new Feature\Login(),
             new Feature\Register(
                 termsRoute: static function (RouterInterface $router): string {
                     return 'https://example.com/terms';
@@ -362,7 +362,7 @@ class RegisterTest extends \Tobento\App\Testing\TestCase
     public function testUserCanNotRegisterWithoutTermsConfirmed()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Login::class,
+            new Feature\Login(),
             new Feature\Register(
                 termsRoute: static function (RouterInterface $router): string {
                     return 'https://example.com/terms';

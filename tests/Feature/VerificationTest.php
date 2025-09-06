@@ -72,8 +72,8 @@ class VerificationTest extends \Tobento\App\Testing\TestCase
     public function testVerificationScreenIsRenderedIsRenderedInLocaleDe()
     {
         $this->fakeConfig()->with('user_web.features', [
-            Feature\Login::class,
-            Feature\Profile::class,
+            new Feature\Login(),
+            new Feature\Profile(),
             new Feature\Verification(
                 localizeRoute: true,
             ),
