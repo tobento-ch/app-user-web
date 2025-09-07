@@ -78,7 +78,7 @@
                                 for: 'remember',
                             ) ?>
                         </span>
-                        <p class="text-xxs"><?= $view->etrans('Do not select this feature if you are using a public computer or sharing it with multiple people or make sure you log out after.') ?></p>
+                        <p class="text-xxs mt-xs"><?= $view->etrans('Do not select this feature if you are using a public computer or sharing it with multiple people or make sure you log out after.') ?></p>
                     </div>
                 </div>
                 <?php } ?>

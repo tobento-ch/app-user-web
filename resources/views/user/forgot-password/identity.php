@@ -42,7 +42,7 @@
                             name: 'address.name',
                             attributes: ['required', 'autofocus', 'autocomplete' => 'name'],
                         ) ?>
-                        <p class="text-xxs"><?= $view->etrans('The name you have registered.') ?></p>
+                        <p class="text-xxs mt-xs"><?= $view->etrans('The name you have registered.') ?></p>
                     </div>
                 </div>
 
@@ -59,7 +59,7 @@
                             name: 'user',
                             attributes: ['required', 'autofocus', 'autocomplete' => 'username'],
                         ) ?>
-                        <p class="text-xxs"><?= $view->etrans('E-Mail or Smartphone.') ?></p>
+                        <p class="text-xxs mt-xs"><?= $view->etrans('E-Mail or Smartphone.') ?></p>
                     </div>
                 </div>
 
