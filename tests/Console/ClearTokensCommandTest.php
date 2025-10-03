@@ -27,7 +27,7 @@ use Tobento\Service\Translation;
 use Psr\Container\ContainerInterface;
 use Psr\Clock\ClockInterface;
 
-class ClearCommandTest extends TestCase
+class ClearTokensCommandTest extends TestCase
 {
     protected function getContainer(): Container
     {
