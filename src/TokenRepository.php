@@ -31,12 +31,12 @@ class TokenRepository extends StorageRepository
     protected function configureColumns(): iterable|ColumnsInterface
     {
         return [
-            Column\Text::new('id'),
-            Column\Text::new('type')->type(length: 100),
-            Column\Integer::new('user_id'),
-            Column\Json::new('payload'),
-            Column\Datetime::new('issued_at', type: 'timestamp'),
-            Column\Datetime::new('expires_at', type: 'timestamp'),
+            new Column\Text('id'),
+            new Column\Text('type')->type(length: 100),
+            new Column\Integer('user_id'),
+            new Column\Json('payload'),
+            new Column\Datetime(name: 'issued_at', type: 'timestamp'),
+            new Column\Datetime(name: 'expires_at', type: 'timestamp'),
         ];
     }
 }
