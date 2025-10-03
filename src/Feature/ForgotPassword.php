@@ -254,11 +254,11 @@ class ForgotPassword
     /**
      * Verify and reset the user's password.
      *
-     * @param RequesterInterface $requester
+     * @param ValidationRequest $request
      * @param ResponserInterface $responser
      * @param UserRepositoryInterface $userRepository
+     * @param PasswordHasherInterface $passwordHasher
      * @param TokenVerificatorInterface $verificator
-     * @param SessionInterface $session
      * @param RouterInterface $router
      * @param null|EventDispatcherInterface $eventDispatcher
      * @return ResponseInterface

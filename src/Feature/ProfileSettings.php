@@ -50,8 +50,6 @@ class ProfileSettings
      * @param null|string $menuParent The menu parent or null if none.
      * @param string $unauthenticatedMessage
      * @param null|string $unauthenticatedRedirectRoute
-     * @param bool $channelVerifications If true, it displays a channel verification section to verify channels.
-     * @param string $successDeleteRedirectRoute
      * @param bool $localizeRoute
      */
     public function __construct(

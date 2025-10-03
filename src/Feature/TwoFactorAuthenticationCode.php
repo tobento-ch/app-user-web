@@ -48,16 +48,12 @@ class TwoFactorAuthenticationCode
      * @param int|DateInterval $expiresAfter
      *   The period of time from the present after which the item MUST be considered
      *   expired. An integer parameter is understood to be the time in seconds until expiration.
-     * @param int|DateInterval $remember Null if no remember at all, otherwise
-     *   the period of time from the present after which the item MUST be considered
-     *   expired. An integer parameter is understood to be the time in seconds until expiration.
      * @param int|DateInterval $codeExpiresAfter
      * @param int $canReissueCodeAfter The seconds a new code can be reissued.
      * @param string $unauthenticatedMessage
      * @param null|string $unauthenticatedRedirectRoute
      * @param string $successRoute
      * @param null|string $successMessage
-     * @param null|string $forgotPasswordRoute
      * @param bool $localizeRoute
      */
     public function __construct(
@@ -193,10 +189,11 @@ class TwoFactorAuthenticationCode
      *
      * @param RequesterInterface $requester
      * @param ResponserInterface $responser
+     * @param AuthInterface $auth
      * @param AvailableChannelsInterface $channels
-     * @param UserRepositoryInterface $userRepository
      * @param RouterInterface $router
      * @param PinCodeVerificatorInterface $verificator
+     * @param TokenStorageInterface $tokenStorage
      * @param ClockInterface $clock
      * @param null|EventDispatcherInterface $eventDispatcher
      * @return ResponseInterface
@@ -340,7 +337,6 @@ class TwoFactorAuthenticationCode
     /**
      * Determine if the code can be verified.
      *
-     * @param string $channel
      * @param AvailableChannelsInterface $channels
      * @param null|UserInterface $user
      * @return bool
