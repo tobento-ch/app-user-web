@@ -1,6 +1,6 @@
 {
     "name": "tobento/app-user-web",
-    "version": "2.0",
+    "version": "2.0.1",
     "type": "library",
     "description": "User web support for the app providing features such as login, registration, password reset, logout and more.",
     "keywords": [
@@ -56,8 +56,7 @@
     "autoload-dev": {
         "psr-4": {
             "Tobento\\App\\User\\Web\\Test\\": "tests",
-            "Tobento\\Service\\Console\\Test\\": "vendor/tobento/service-console/tests",
-            "App\\": "build/src"
+            "Tobento\\Service\\Console\\Test\\": "vendor/tobento/service-console/tests"
         }
     },
     "scripts": {
