@@ -1632,12 +1632,9 @@ class UserNewsletterSubscriber
             // unsubscribe user with the old email address...
             // subscribe user with the new email address...
         }
-    }
-    
-    public function subscribeOrUnsubscribe(Event\UpdatedProfileSettings $event): void
-    {
+        
         if ($event->user()->newsletter()) {
-            // subscribe...
+            // subscribe if not already
         } else {
             // unsubscribe...
         }
