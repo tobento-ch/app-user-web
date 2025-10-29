@@ -81,10 +81,10 @@ class Notifications
     ): void {
         // Routes:
         $route = $router->group('', function(RouteGroupInterface $route) {
-            $uri = $this->localizeRoute ? '{?locale}/{notifications}' : 'notifications';
-            $route->get($uri, [$this, 'index'])->name('notifications');
-            $route->patch($uri.'/dismiss', [$this, 'dismiss'])->name('notifications.dismiss');
-            $route->post($uri.'/dismiss', [$this, 'dismissAll'])->name('notifications.dismiss.all');
+            $uri = $this->localizeRoute ? '{?locale}/profile/{notifications}' : 'profile/notifications';
+            $route->get($uri, [$this, 'index'])->name('profile.notifications');
+            $route->patch($uri.'/dismiss', [$this, 'dismiss'])->name('profile.notifications.dismiss');
+            $route->post($uri.'/dismiss', [$this, 'dismissAll'])->name('profile.notifications.dismiss.all');
             
         })->middleware(...$this->configureMiddlewares($app));
 
@@ -100,9 +100,9 @@ class Notifications
                     if ($this->canViewMenu($auth)) {
                         $count = $this->getUnreadNotificationsCount($channels, $auth->getAuthenticated()->user(), $app);
                         $menus->menu($this->menu)
-                            ->link($router->url('notifications'), trans($this->menuLabel))
+                            ->link($router->url('profile.notifications'), trans($this->menuLabel))
                             ->parent($this->menuParent)
-                            ->id('notifications')
+                            ->id('profile.notifications')
                             ->icon('notification')
                             ->badgeIf(
                                 badge: $count > 0,
@@ -204,7 +204,7 @@ class Notifications
         
         // create and return response:
         $responser->messages()->add(level: 'success', message: 'Notification dismissed successfully.');
-        return $responser->redirect($router->url('notifications'));
+        return $responser->redirect($router->url('profile.notifications'));
     }
     
     /**
@@ -247,7 +247,7 @@ class Notifications
         
         // create and return response:
         $responser->messages()->add(level: 'success', message: 'Notifications dismissed successfully.');
-        return $responser->redirect($router->url('notifications'));
+        return $responser->redirect($router->url('profile.notifications'));
     }
     
     /**

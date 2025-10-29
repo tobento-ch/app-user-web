@@ -35,6 +35,10 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
     public function createApp(): AppInterface
     {
         $app = $this->createTmpApp(rootDir: __DIR__.'/../..');
+        //$app->boot(\Tobento\App\Boot\ErrorHandling::class);
+        //$app->booting();
+        //$app->get(\Tobento\Service\Config\ConfigInterface::class)->set('app.debug', true);
+        
         $app->boot(\Tobento\App\User\Web\Boot\UserWeb::class);
         $app->boot(\Tobento\App\Seeding\Boot\Seeding::class);
         
@@ -51,7 +55,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
     {
         $auth = $this->fakeAuth();
         $http = $this->fakeHttp();
-        $http->request(method: 'GET', uri: 'notifications');
+        $http->request(method: 'GET', uri: 'profile/notifications');
         
         $app = $this->bootingApp();
         $auth->authenticatedAs(UserFactory::new()->createOne());
@@ -71,7 +75,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
         ]);
         $auth = $this->fakeAuth();
         $http = $this->fakeHttp();
-        $http->request(method: 'GET', uri: 'notifications');
+        $http->request(method: 'GET', uri: 'profile/notifications');
         
         $app = $this->getApp();
         $app->on(ChannelsInterface::class, function(ChannelsInterface $channels) {
@@ -106,7 +110,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
     {
         $auth = $this->fakeAuth();
         $http = $this->fakeHttp();
-        $http->request(method: 'GET', uri: 'notifications');
+        $http->request(method: 'GET', uri: 'profile/notifications');
         
         $app = $this->getApp();
         $app->on(ChannelsInterface::class, function(ChannelsInterface $channels) {
@@ -146,7 +150,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
     {
         $auth = $this->fakeAuth();
         $http = $this->fakeHttp();
-        $http->request(method: 'GET', uri: 'notifications');
+        $http->request(method: 'GET', uri: 'profile/notifications');
         
         $app = $this->getApp();
         $app->on(ChannelsInterface::class, function(ChannelsInterface $channels) {
@@ -202,7 +206,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
         
         $auth = $this->fakeAuth();
         $http = $this->fakeHttp();
-        $http->request(method: 'GET', uri: 'de/benachrichtigungen');
+        $http->request(method: 'GET', uri: 'de/profile/benachrichtigungen');
         
         $app = $this->getApp();
         $app->on(LanguagesInterface::class, function() {
@@ -224,7 +228,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
     public function testNotificationsScreenIsNotRenderedIfNotAuthenticated()
     {
         $http = $this->fakeHttp();
-        $http->request(method: 'GET', uri: 'notifications');
+        $http->request(method: 'GET', uri: 'profile/notifications');
         
         $http->followRedirects()
             ->assertStatus(200)
@@ -237,7 +241,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
         $http = $this->fakeHttp();
         $http->request(
             method: 'PATCH',
-            uri: 'notifications/dismiss',
+            uri: 'profile/notifications/dismiss',
             body: [
                 'id' => '1',
             ],
@@ -262,7 +266,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
         $app->booting();
         $auth->authenticatedAs(UserFactory::new()->createOne());
         
-        $http->response()->assertStatus(302)->assertRedirectToRoute(name: 'notifications');
+        $http->response()->assertStatus(302)->assertRedirectToRoute(name: 'profile.notifications');
         
         $http->followRedirects()
             ->assertStatus(200)
@@ -277,10 +281,10 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
     {
         $auth = $this->fakeAuth();
         $http = $this->fakeHttp();
-        $http->previousUri('notifications');
+        $http->previousUri('profile/notifications');
         $http->request(
             method: 'PATCH',
-            uri: 'notifications/dismiss',
+            uri: 'profile/notifications/dismiss',
             body: [
                 'id' => '1',
             ],
@@ -302,7 +306,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
         $app->booting();
         $auth->authenticatedAs(UserFactory::new()->createOne());
         
-        $http->response()->assertStatus(302)->assertRedirectToRoute(name: 'notifications');
+        $http->response()->assertStatus(302)->assertRedirectToRoute(name: 'profile.notifications');
         
         $http->followRedirects()
             ->assertStatus(200)
@@ -313,10 +317,10 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
     {
         $auth = $this->fakeAuth();
         $http = $this->fakeHttp();
-        $http->previousUri('notifications');
+        $http->previousUri('profile/notifications');
         $http->request(
             method: 'PATCH',
-            uri: 'notifications/dismiss',
+            uri: 'profile/notifications/dismiss',
             body: [
                 'id' => '1',
             ],
@@ -325,7 +329,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
         $app = $this->bootingApp();
         $auth->authenticatedAs(UserFactory::new()->createOne());
         
-        $http->response()->assertStatus(302)->assertRedirectToRoute(name: 'notifications');
+        $http->response()->assertStatus(302)->assertRedirectToRoute(name: 'profile.notifications');
         
         $http->followRedirects()
             ->assertStatus(200)
@@ -338,7 +342,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
         $http = $this->fakeHttp();
         $http->request(
             method: 'PATCH',
-            uri: 'notifications/dismiss',
+            uri: 'profile/notifications/dismiss',
             body: [
                 'id' => '1',
             ],
@@ -355,7 +359,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
         $http = $this->fakeHttp();
         $http->request(
             method: 'POST',
-            uri: 'notifications/dismiss',
+            uri: 'profile/notifications/dismiss',
         );
         
         $app = $this->getApp();
@@ -377,7 +381,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
         $app->booting();
         $auth->authenticatedAs(UserFactory::new()->createOne());
         
-        $http->response()->assertStatus(302)->assertRedirectToRoute(name: 'notifications');
+        $http->response()->assertStatus(302)->assertRedirectToRoute(name: 'profile.notifications');
         
         $http->followRedirects()
             ->assertStatus(200)
@@ -394,7 +398,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
         $http = $this->fakeHttp();
         $http->request(
             method: 'POST',
-            uri: 'notifications/dismiss',
+            uri: 'profile/notifications/dismiss',
         );
         
         $app = $this->getApp();
@@ -424,7 +428,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
         $app->booting();
         $auth->authenticatedAs(UserFactory::new()->createOne());
         
-        $http->response()->assertStatus(302)->assertRedirectToRoute(name: 'notifications');
+        $http->response()->assertStatus(302)->assertRedirectToRoute(name: 'profile.notifications');
         
         $http->followRedirects()
             ->assertStatus(200)
@@ -442,7 +446,7 @@ class NotificationsTest extends \Tobento\App\Testing\TestCase
         $http = $this->fakeHttp();
         $http->request(
             method: 'POST',
-            uri: 'notifications/dismiss',
+            uri: 'profile/notifications/dismiss',
         );
         
         $http->response()
