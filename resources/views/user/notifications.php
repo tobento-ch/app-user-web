@@ -16,7 +16,7 @@ foreach($notifications as $notification) {
         $actions .= '<a class="button primary text-xs" href="'.$view->esc($action->url()).'">'.$view->esc($action->text()).'</a>';
     }
     
-    $actions .= $form->form(['method' => 'PATCH', 'action' => $view->routeUrl('notifications.dismiss')]);
+    $actions .= $form->form(['method' => 'PATCH', 'action' => $view->routeUrl('profile.notifications.dismiss')]);
     $actions .= $form->input(name: 'id', type: 'hidden', value: $notification->id());
     $actions .= $form->button(text: $view->trans('dismiss'), attributes: ['class' => 'button text-xs']);
     $actions .= $form->close();
@@ -63,7 +63,7 @@ foreach($notifications as $notification) {
                     <?= $table ?>
                     <div class="mt-m">
                         <?php $form = $view->form(); ?>
-                        <?= $form->form(['action' => $view->routeUrl('notifications.dismiss.all')]) ?>
+                        <?= $form->form(['action' => $view->routeUrl('profile.notifications.dismiss.all')]) ?>
                         <?= $form->button(text: $view->trans('dismiss all'), attributes: ['class' => 'button text-xs primary']) ?>
                         <?= $form->close() ?>
                     </div>
